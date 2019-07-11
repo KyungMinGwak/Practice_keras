@@ -1,0 +1,86 @@
+# addtional assignment
+#polyfit
+import numpy as np
+import pylab
+x = (5.3, 4.7, 2.9, 5.1, 4.9, 2.5, 5.2, 0.8, 1.8, 1.0, 7.3, 8.4, 7.3)
+d = (0.95, 0.59, 0.88, 0.96, 0.99, 0.88, 1.0, 0, 0.63, 0.18, 0.97, 0.99, 1.01)
+
+
+yp = np.poly1d(np.polyfit(x,d,5))
+
+xtest = np.linspace(0,10,100)
+plt.scatter(x,d)
+plt.plot(xtest,yp(xtest),'r')
+plt.show()
+
+
+
+# addtional assignment
+#polyfit
+import numpy as np
+x = np.array([5.3, 4.7, 2.9, 5.1, 4.9, 2.5, 5.2, 0.8, 1.8, 1.0, 7.3, 8.4, 7.3])
+d = np.array([0.95, 0.59, 0.88, 0.96, 0.99, 0.88, 1.0, 0, 0.63, 0.18, 0.97, 0.99, 1.01])
+
+
+#build X
+m=5 #order of the polynomial
+X = np.zeros((x.size, m+1))
+
+for i in range(m+1):
+    X[:,i]=x**i
+#find w
+w = np.linalg.solve(X.T.dot(X),X.T.dot(d))
+
+#find y
+
+y = X.dot(w)
+
+#test
+xtest = np.linspace(0,10,100)
+Xtest = np.zeros((xtest.size,m+1))
+
+for i in range(m+1):
+    Xtest[:,i]=xtest**i
+
+ytest = Xtest.dot(w)
+
+plt.plot(x,d,'x')
+plt.plot(xtest,ytest,'r')
+
+
+
+
+
+
+
+# addtional assignment
+#polyfit
+import numpy as np
+import pylab
+x = np.array([5.3, 4.7, 2.9, 5.1, 4.9, 2.5, 5.2, 0.8, 1.8, 1.0, 7.3, 8.4, 7.3])
+d = np.array([0.95, 0.59, 0.88, 0.96, 0.99, 0.88, 1.0, 0, 0.63, 0.18, 0.97, 0.99, 1.01])
+
+#build X
+
+X = np.zeros((x.size,m+1))
+
+for i in range(m+1):
+    X[:,i]=x**i
+#find W
+w = np.linalg.solve(X.T.dot(X),X.T.dot(d))
+
+#find y
+y = X.dot(w)
+
+#test
+xtest = np.linspace(0,10,100)
+
+Xtest = np.zeros((xtest.size, m+1))
+for i in range(m+1):
+    Xtest[:,i] = xtest**i
+    
+ytest = Xtest.dot(w)
+
+plt.plot(xtest,ytest,'r')
+plt.plot(x,d,'o')
+plt.show()
